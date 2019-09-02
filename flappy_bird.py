@@ -4,7 +4,7 @@ import time
 import os
 import random
 
-WIN_WIDTH = 600
+WIN_WIDTH = 500
 WIN_HEIGHT = 800
 
 BIRD_IMGS = [pygame.transform.scale2x(pygame.image.load(os.path.join("imgs","bird" + str(x) + ".png"))) for x in range(1,4)]
@@ -38,7 +38,7 @@ class Bird:
     def move(self):
         self.tick_count += 1
 
-        displacement = self.vel*self.tick_count + 1.5*self.tick_count**2
+        displacement = self.vel*self.tick_count + 1.5*(self.tick_count)**2
 
         if displacement >= 16:
             displacement = 16
@@ -48,18 +48,18 @@ class Bird:
 
         self.y = self.y + displacement
 
-        #when bird going upwords then rotate the bird img 25 degree and rotate 90 degree when falling 
+        #if bird going upwords then rotate the bird img 25 degree else rotate 90 degree when falling 
         if displacement < 0 or self.y  < self.height + 50:
             if self.tilt < self.MAX_ROTATION:
                 self.tilt = self.MAX_ROTATION
-            else:
-                if self.tilt > -90:
-                    self.tilt -= self.ROT_VEL
+        else:
+            if self.tilt > -90:
+                self.tilt -= self.ROT_VEL
     
     def draw(self, win):
         self.img_count += 1
 
-        #animated the bird images just like flying with wings 
+        #animated bird images just like flying with the wings 
         if self.img_count < self.ANIMATION_TIME:
             self.img = self.IMGS[0]
         elif self.img_count < self.ANIMATION_TIME*2:
@@ -72,7 +72,7 @@ class Bird:
             self.img = self.IMGS[0]
             self.img_count = 0
 
-        #when the bird falling down
+        #bird falling down
         if self.tilt <= -80:
             self.img = self.IMGS[1]
             self.img_count = self.ANIMATION_TIME*2
@@ -94,13 +94,16 @@ def draw_window(win, bird):
 def main():
     bird = Bird(200,200)
     win = pygame.display.set_mode((WIN_WIDTH, WIN_HEIGHT))
+    clock = pygame.time.Clock()
     
     run = True
     while run:
+        clock.tick(30)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
 
+        bird.move()
         draw_window(win, bird)
 
     pygame.quit()
