@@ -20,6 +20,9 @@ In `neat-config.txt` you can change configs.
 fitness_criterion     = max
 fitness_threshold     = 100       # birds fitness threshold
 pop_size              = 20        # Start with 20 birds for each generation
+
+....
+....
 ```
 #### Report
 ```
@@ -48,4 +51,7 @@ Population of 20 members in 1 species:
      1    1    20     62.9    0.072     0
 Total extinctions: 0
 Generation time: 13.292 sec (10.375 average)
+
+....
+....
 ```
