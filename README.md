@@ -4,14 +4,14 @@ AI plays the game Flappy Bird using NEAT
 
 Install all dependencies by running
 ```python
-      $pip install -r requirements.txt
+      $ pip install -r requirements.txt
 ```
 ## Screenshot
 ![screenshot.jpg](screenshot.jpg)
 
 ### Run the game
 ```python
-      $python flappy_bird.py
+      $ python flappy_bird.py
 ```
 #### Configurations
 In `neat-config.txt` you can change configs.
